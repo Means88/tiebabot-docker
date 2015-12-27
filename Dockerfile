@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM daocloud.io/python:2.7
 MAINTAINER Fernando Mayo <fernando@tutum.co>
 
 # Install base packages
@@ -15,7 +15,7 @@ RUN apt-get update && \
         php-apc && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN apt-get install python2.7
+
 RUN /usr/sbin/php5enmod mcrypt
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
     sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini
