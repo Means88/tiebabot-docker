@@ -1,6 +1,8 @@
 #!/bin/bash
 chown www-data:www-data /app -R
 
+python /app/cron.py &
+
 if [ "$ALLOW_OVERRIDE" = "**False**" ]; then
     unset ALLOW_OVERRIDE
 else
@@ -11,4 +13,3 @@ fi
 source /etc/apache2/envvars
 tail -F /var/log/apache2/* &
 exec apache2 -D FOREGROUND
-python /app/cron.py
